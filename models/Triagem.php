@@ -49,7 +49,7 @@ class Triagem extends \yii\db\ActiveRecord
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritdoc }
      */
     public function attributeLabels()
     {
