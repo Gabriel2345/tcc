@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Prioridade;
+use yii\helpers\ArrayHelper;
 use kartik\icons\Icon;
 
 /* @var $this yii\web\View */
@@ -16,15 +18,16 @@ Icon::map($this);
     
     <?php echo $form->field($model, 'temp')->textInput() ?>
 
-    <?php echo $form->field($model, 'sat')->textInput() ?>
+    <?php echo $form->field($model, 'pas')->textInput() ?>
 
     <?php echo $form->field($model, 'pad')->textInput() ?>
 
-    <?php echo $form->field($model, 'pas')->textInput() ?>
+    <?php echo $form->field($model, 'sat')->textInput() ?>
 
     <?php echo $form->field($model, 'obs')->textArea() ?>
 
-    <?php echo $form->field($model, 'id_prioridade')->textInput() ?>
+    <?php $prioridades = ArrayHelper::map(Prioridade::find()->orderBy('id')->all(), 'id', 'descricao'); ?>
+    <?php echo $form->field($model, 'id_prioridade')->dropDownList($prioridades) ?>
 
     <?php echo $form->field($model, 'id_funcionario')->hiddenInput()->label(false) ?>
 

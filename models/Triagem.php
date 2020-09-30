@@ -108,72 +108,72 @@ class Triagem extends \yii\db\ActiveRecord
 
     public function classificarRisco() {
             
-           //print_r($this->temp. $this->pad. $this->pas. $this->sat);
+           
 
-        if($this->temp == 0 || $this->pad == 00 || $this->pas == 0 || $this->sat == 0) {
-            echo 'execulta funcao';die();            
-        }
+        //if($this->temp == 0 || $this->pad == 00 || $this->pas == 0 || $this->sat == 0) {
+          //  echo 'execulta funcao';die();            
+        //}
         // se temperatura estiver normal 
-        if($this->temp > 36 && $this->temp <= 37.5){
-            echo 'entre';
+        if($this->temp >= 36 && $this->temp <= 37.5){            
             // se pressão estiver normal
-            if($this->pas <= 120 && $this->pad <= 80){
+            if($this->pas <= 120 && $this->pad <= 80 ){
                 // se saturação estiver normal cor azul
                 if($this->sat == 100){
-                    $this->prioridade = 20;
+                    $this->id_prioridade = 1;
                     
                 } //se saturação estiver um pouco baixa cor amarela
                 else if($this->sat <= 99 && $this->sat >= 95) {
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                     
                 } //se saturação estiver abaixo de 95 cor laranja
                 else if($this->sat >= 90 && $this->sat <= 94) {
-                    $this->prioridade = 80;
+                    $this->id_prioridade = 4;
                     
                 }//caso de emergência cor vermelha
                 else {
-                    $this->prioridade = 100;
+                    $this->id_prioridade = 5;
                 }                
             } // pressão um pouco alterada
-            else if(($this->pas >= 120 && $this->pas <= 139 ) && ($this->pad >= 80 && $this->pas <= 89)){
+            else if(($this->pad >= 80 && $this->pad <= 89) && ($this->pas >= 120 && $this->pas <= 139 )){
                 // se saturação estiver normal cor verde
                 if($this->sat == 100){
-                    $this->prioridade = 40;
+                    $this->id_prioridade = 2;
                 }//se saturação estiver um pouco baixa cor amarela
                 else if($this->sat <= 99 && $this->sat >= 95) {
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                     
                 } //se saturação estiver abaixo de 95 cor laranja
                 else if($this->sat >= 90 && $this->sat <= 94) {
-                    $this->prioridade = 80;
+                    $this->id_prioridade = 4;
                     
                 } //caso de emergência cor vermelha
                 else {
-                    $this->prioridade = 100;
+                    $this->id_prioridade = 5;
                 }                
             } //pressão igual ou acima de 140/90
-            else if(($this->pas >= 140 && $this->pas <= 159) && ($this->pad >= 90 && $this->pad <= 109)) {
+            else if(($this->pad >= 90 && $this->pad <= 109) && ($this->pas >= 140 && $this->pas <= 159)) {
                 // saturação normal cor amarela
                 if($this->sat == 100) {
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                 } // saturação um pouco baixa cor amarela 
                 else if($this->sat <=99 && $this->sat >= 95){
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                 } // saturação abaixo de 95 cor laranja
                 else if($this->sat >= 90 && $this->sat <= 94) {
-                    $this->prioridade = 80;
+                    $this->id_prioridade = 4;
                 } //caso de emergência cor vermelha
                 else {
-                    $this->prioridade = 100;
+                    $this->id_prioridade = 5;
                 }
             }// pressão igual ou maior que 160/100
-            else if($this->pas >= 160 && $this->pad >= 100) {
+            else if($this->pad >= 100 && $this->pas >= 160) {
                 // saturação abaixo de 90 caso de emergência               
-                if($this->sat <= 90) {
-                    $this->prioridade = 100;
-                }
-                // cor laranja
-                $this->prioridade = 80;
+                if($this->sat >= 90) {
+                    // cor laranja
+                    $this->id_prioridade = 4;
+                }else{
+                    $this->id_prioridade = 5;
+                }               
             }
         }// temperatura pouco acima de 37.5
         else if($this->temp >= 37.5 && $this->temp <= 37.9) {
@@ -181,66 +181,67 @@ class Triagem extends \yii\db\ActiveRecord
             if($this->pas <= 120 && $this->pad <= 80){
                 // se saturação estiver normal cor verde
                 if($this->sat == 100){
-                    $this->prioridade = 40;
+                    $this->id_prioridade = 2;
                     
                 } //se saturação estiver um pouco baixa cor amarela
                 else if($this->sat <= 99 && $this->sat >= 95) {
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                     
                 } //se saturação estiver abaixo de 95 cor laranja
                 else if($this->sat >= 90 && $this->sat <= 94) {
-                    $this->prioridade = 80;
+                    $this->id_prioridade = 4;
                     
                 }//caso de emergência cor vermelha
                 else {
-                    $this->prioridade = 100;
+                    $this->id_prioridade = 5;
                 }                
             }// pressão um pouco alterada
-            else if(($this->pas >= 120 && $this->pas <= 139 ) && ($this->pad >= 80 && $this->pas <= 89)){
+            else if(($this->pas >= 120 && $this->pas <= 139 ) && ($this->pad >= 80 && $this->pad <= 89)){
                 // se saturação estiver normal cor verde
                 if($this->sat == 100){
-                    $this->prioridade = 40;
+                    $this->id_prioridade = 2;
                 }//se saturação estiver um pouco baixa cor amarela
                 else if($this->sat <= 99 && $this->sat >= 95) {
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                     
                 } //se saturação estiver abaixo de 95 cor laranja
                 else if($this->sat >= 90 && $this->sat <= 94) {
-                    $this->prioridade = 80;
+                    $this->id_prioridade = 4;
                     
                 } //caso de emergência cor vermelha
                 else {
-                    $this->prioridade = 100;
+                    $this->id_prioridade = 5;
                 }                
             }// pressão um pouco alta
             else if(($this->pas >= 140 && $this->pas <= 159) && ($this->pad >= 90 && $this->pad <= 109)) {
                 // saturação normal cor amarela
                 if($this->sat == 100) {
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                 } // saturação um pouco baixa cor amarela 
                 else if($this->sat <=99 && $this->sat >= 95){
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                 } // saturação abaixo de 95 cor laranja
                 else if($this->sat >= 90 && $this->sat <= 94) {
-                    $this->prioridade = 80;
+                    $this->id_prioridade = 4;
                 } //caso de emergência cor vermelha
                 else {
-                    $this->prioridade = 100;
+                    $this->id_prioridade = 5;
                 }
             }// pressão igual ou maior a 160/100
             else if($this->pas >= 160 && $this->pad >= 100) {
                 // saturação abaixo de 90 caso de emergência               
                 if($this->sat <= 90) {
-                    $this->prioridade = 100;
+                    $this->prioridade = 5;
+                }else{
+                    // cor laranja
+                    $this->prioridade = 4;
                 }
-                // cor laranja
-                $this->prioridade = 80;
+                
             }      
         }// temperatura acima de 38
-        else if($this->temp >= 38 && $this->temp >= 39.9) {
+        else if($this->temp >= 38 && $this->temp <= 39.9) {
             // pressão normal
-            
-            if($this->pas <= 80 && $this->pad <= 120){
+            if($this->pas <= 120 && $this->pad <= 80){
                 // se saturação estiver normal cor amarela
                 if($this->sat == 100){
                     $this->id_prioridade = 3;
@@ -258,7 +259,7 @@ class Triagem extends \yii\db\ActiveRecord
                     $this->id_prioridade = 5;
                 }                
             }// pressão um pouco alterada
-            else if(($this->pas >= 120 && $this->pas <= 139 ) && ($this->pad >= 80 && $this->pas <= 89)){
+            else if(($this->pas >= 120 && $this->pas <= 139 ) && ($this->pad >= 80 && $this->pad <= 89)){
                 // se saturação estiver normal cor amarela
                 if($this->sat == 100){
                     $this->id_prioridade = 3;
@@ -278,42 +279,42 @@ class Triagem extends \yii\db\ActiveRecord
             else if(($this->pas >= 140 && $this->pas <= 159) && ($this->pad >= 90 && $this->pad <= 109)) {
                 // saturação normal cor amarela
                 if($this->sat == 100) {
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                 } // saturação um pouco baixa cor amarela 
                 else if($this->sat <=99 && $this->sat >= 95){
-                    $this->prioridade = 60;
+                    $this->id_prioridade = 3;
                 } // saturação abaixo de 95 cor laranja
                 else if($this->sat >= 90 && $this->sat <= 94) {
-                    $this->prioridade = 80;
+                    $this->id_prioridade = 4;
                 } //caso de emergência cor vermelha
                 else {
-                    $this->prioridade = 100;
+                    $this->id_prioridade = 5;
                 }
             }// pressão igual ou maior a 160/100
             else if($this->pas >= 160 && $this->pad >= 100) {
                 // saturação abaixo de 90 caso de emergência               
                 if($this->sat <= 90) {
-                    $this->prioridade = 100;
+                    $this->id_prioridade = 5;
+                }else {
+                    // cor laranja
+                    $this->id_prioridade = 4;
                 }
-                // cor laranja
-                $this->prioridade = 80;
+                
             }      
-        }// temperatura acima de 40
-        else  {
-            echo 'execulta funcao';die();
+        }// temperatura acima ou igual a 40
+        else  {            
             // pressão igual ou maior a 160/100
-            if($this->pas >= 160 && $this->pad >= 100) {
-                // saturação abaixo de 90 caso de emergência               
-                if($this->sat <= 90) {
-                    $this->prioridade = 100;
-                }
-                // cor laranja
-                $this->prioridade = 80;
-            }
-            
-            $this->prioridade = 80;
+            if($this->pas >= 160 && $this->pad >= 100) {                               
+                if($this->sat >= 90) {
+                     // cor laranja
+                    $this->id_prioridade = 4;
+                }else {
+                    // saturação abaixo de 90 caso de emergência
+                    $this->id_prioridade = 5;
+                }                
+            }           
         }
-        }
+    }
 
     public function beforeSave($insert) {
         if(!parent::beforeSave($insert)) {

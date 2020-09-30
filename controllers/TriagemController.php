@@ -84,7 +84,7 @@ class TriagemController extends Controller
             $model->classificarRisco();
             if($model->save()){
                 Yii::$app->session->setFlash('success', 'Triagem alterada com sucesso');
-//                return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+                //return $this->redirect(['index', 'id_paciente' => $id_paciente]);
             }
         }
 

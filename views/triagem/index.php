@@ -32,6 +32,7 @@ Icon::map($this);
 
             [
                 'attribute' => 'id_prioridade',
+                'value' => 'prioridade.descricao',
                 'headerOptions' => ['class' => 'col-md-1 text-center']
             ],
 
