@@ -38,7 +38,7 @@ class ConsultaController extends Controller
     public function actionIndex($id_paciente)
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Consulta::find(),
+            'query' => Consulta::find()->where(['id_paciente' => $id_paciente]),
         ]);
 
         return $this->render('index', [

@@ -32,10 +32,12 @@ Icon::map($this);
 
             [
                 'attribute' => 'id_paciente',
+                'value' => 'paciente.nome'
             ],
             
             [
                 'attribute' => 'id_funcionario',
+                'value' => 'funcionario.nome'
             ],                       
 
             [
