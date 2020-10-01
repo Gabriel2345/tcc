@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 use kartik\icons\Icon;
 
 /* @var $this yii\web\View */
@@ -18,7 +19,9 @@ Icon::map($this);
 
     <?php echo $form->field($model, 'endereco')->textInput(['maxlength' => true]) ?>
 
-    <?php echo $form->field($model, 'telefone')->textInput(['maxlength' => true]) ?>
+    <?php echo $form->field($model, 'telefone')->textInput(['maxlength' => true])->widget(MaskedInput::className(), [
+        'mask' => '(99) 99999-9999'
+    ]) ?>
 
     <?php echo $form->field($model, 'data_nascimento')->textInput(['type' => 'date']) ?>
 

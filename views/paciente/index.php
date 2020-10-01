@@ -59,7 +59,12 @@ Icon::map($this);
                         return Html::a(Icon::show('trash'), ['delete', 'id' => $model->id], ['title' => 'Excluir']);
                     },
                     'adicionarfila' => function($url, $model) {
-                        return Html::a(Icon::show('plus'), ['paciente/adicionar-fila', 'id_paciente' => $model->id], ['title' => 'Incluir na fila de espera']);
+                        if($model->filaEsperas) {
+                            return Html::a(Icon::show('plus'), ['fila-espera/index']);
+                        } else {
+                            return Html::a(Icon::show('plus'), ['paciente/adicionar-fila', 'id_paciente' => $model->id], ['title' => 'Incluir na fila de espera']);
+                        }
+                        
                     },
                 ],
             ],

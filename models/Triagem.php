@@ -134,7 +134,7 @@ class Triagem extends \yii\db\ActiveRecord
                     $this->id_prioridade = 5;
                 }                
             } // pressão um pouco alterada
-            else if(($this->pad >= 80 && $this->pad <= 89) && ($this->pas >= 120 && $this->pas <= 139 )){
+            else if(($this->pas >= 120 && $this->pas <= 139 ) && ($this->pad >= 80 && $this->pad <= 89)){
                 // se saturação estiver normal cor verde
                 if($this->sat == 100){
                     $this->id_prioridade = 2;
@@ -151,7 +151,7 @@ class Triagem extends \yii\db\ActiveRecord
                     $this->id_prioridade = 5;
                 }                
             } //pressão igual ou acima de 140/90
-            else if(($this->pad >= 90 && $this->pad <= 109) && ($this->pas >= 140 && $this->pas <= 159)) {
+            else if(($this->pas >= 140 && $this->pas <= 159) && ($this->pad >= 90 && $this->pad <= 109)) {
                 // saturação normal cor amarela
                 if($this->sat == 100) {
                     $this->id_prioridade = 3;
@@ -166,7 +166,7 @@ class Triagem extends \yii\db\ActiveRecord
                     $this->id_prioridade = 5;
                 }
             }// pressão igual ou maior que 160/100
-            else if($this->pad >= 100 && $this->pas >= 160) {
+            else if($this->pas >= 160 && $this->pad >= 100) {
                 // saturação abaixo de 90 caso de emergência               
                 if($this->sat >= 90) {
                     // cor laranja

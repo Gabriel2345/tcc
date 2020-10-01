@@ -6,7 +6,6 @@ use Yii;
 use app\models\Paciente;
 use app\models\FilaEspera;
 use app\models\Triagem;
-use app\models\Prioridade;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

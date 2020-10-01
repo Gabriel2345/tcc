@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\icons\Icon;
+use kartik\color\ColorInput;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -20,6 +22,9 @@ Icon::map($this);
   
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        //'rowOptions' => function ($model) {
+        //    return ['style' => 'background-color: ' . $model->triagem->prioridade->cor];
+        //},
         'columns' => [
             [
                 'attribute' => 'id_status',
@@ -32,9 +37,13 @@ Icon::map($this);
                 //'attribute' => 'prioridade',
                 'label' => 'Prioridade',
                 'value' => function($model) {
-                    return $model->triagem->prioridade->cor;
+                    return $model->triagem->prioridade->descricao;
                 },
-                'headerOptions' => ['class' => 'col-md-1 text-center'],
+                'headerOptions' => ['class' => 'col-md-1 text-center', ],
+                'contentOptions' => function($model) {
+                    return ['style' => 'background-color: ' . $model->triagem->prioridade->cor];
+                }
+
             ],
 
             [
@@ -57,7 +66,7 @@ Icon::map($this);
                 'headerOptions' => ['class' => 'col-md-2 text-center'],
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function ($model, $key, $index, $column) {
-                    return html::a(Icon::show('notes-medical'), ['/triagem/index', 'id_paciente' => $model->id]);
+                    return html::a(Icon::show('notes-medical'), ['/triagem/index', 'id_paciente' => $model->id_paciente]);
                 },
                 'format' => 'html',
             ],
@@ -67,7 +76,7 @@ Icon::map($this);
                 'headerOptions' => ['class' => 'col-md-2 text-center'],
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function ($model, $key, $index, $column) {
-                    return Html::a(Icon::show('user-md'), ['/consulta/index', 'id_paciente' => $model->id]);
+                    return Html::a(Icon::show('user-md'), ['/consulta/index', 'id_paciente' => $model->id_paciente]);
                 },
                 'format' => 'html',
             ],

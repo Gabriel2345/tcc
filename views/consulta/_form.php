@@ -2,7 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 use kartik\icons\Icon;
+use app\models\Paciente;
+use app\models\Funcionario;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Consulta */
@@ -14,14 +17,17 @@ Icon::map($this);
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
+    <?php echo $form->field($model, 'id')->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'id_funcionario')->textInput() ?>
+    <?php $pacientes = ArrayHelper::map(Paciente::find()->orderBy('nome')->all(), 'id', 'nome') ?>
+    <?php echo $form->field($model, 'id_paciente')->dropDownList($pacientes, ['prompt' => 'Selecione']) ?>
+
+    <?php echo $form->field($model, 'id_funcionario')->textInput() ?>
 
     
 
     <div class="form-group">
-        <?= Html::submitButton(Icon::show('check') . ' Salvar', ['class' => 'btn btn-success']) ?>
+        <?php echo Html::submitButton(Icon::show('check') . ' Salvar', ['class' => 'btn btn-success']) ?>
         <?php echo Html::a(Icon::show('times') . ' Cancelar', ['index', 'id_paciente' => Yii::$app->request->get('id_paciente')], ['class' => 'btn btn-danger']) ?>
     </div>
 

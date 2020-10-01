@@ -15,8 +15,10 @@ Icon::map($this);
 <div class="triagem-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?php echo $form->field($model, 'id_paciente')->textInput() ?>
     
-    <?php echo $form->field($model, 'temp')->textInput() ?>
+    <?php echo $form->field($model, 'temp')->textInput(['type' => 'number', 'min' => '35', 'max' => '42', 'step' => '0.1']) ?>
 
     <?php echo $form->field($model, 'pas')->textInput() ?>
 

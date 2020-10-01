@@ -99,7 +99,7 @@ class FuncionarioController extends Controller
      */
     public function actionDelete($id, $id_cargo)
     {
-        $model = $this->findModel($id, $id_cargo)->delete();
+        $model = $this->findModel($id)->delete();
         Yii::$app->session->setFlash('success', 'Funcionário excluído com sucesso');
         return $this->redirect(['index']);
     }
@@ -112,9 +112,9 @@ class FuncionarioController extends Controller
      * @return Funcionario modelo
      * @throws NotFoundHttpException se o modelo não for encontrado
      */
-    protected function findModel($id, $id_cargo)
+    protected function findModel($id)
     {
-        if (($model = Funcionario::findOne(['id' => $id, 'id_cargo' => $id_cargo])) !== null) {
+        if (($model = Funcionario::findOne(['id' => $id])) !== null) {
             return $model;
         }
 

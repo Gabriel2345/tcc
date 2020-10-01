@@ -4,12 +4,12 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Sistema de atendimento de urgência e emergência';
+$this->title = 'Sistema médico de classificação de risco';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Sistema de atendimento de urgência e emergência</h1>
+        <h1>Sistema médico de classificação de risco</h1>
 
         
     </div>

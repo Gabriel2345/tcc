@@ -39,7 +39,7 @@ class TriagemController extends Controller
     public function actionIndex($id_paciente)
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Triagem::find(),
+            'query' => Triagem::find()->where(['id_paciente' => $id_paciente]),
         ]);
 
         return $this->render('index', [
@@ -69,15 +69,16 @@ class TriagemController extends Controller
     }
 
     /**
-     * Updates an existing Triagem model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Altera um modelo triagem existente.
+     * Se atualizar com sucesso retorna mensagem de sucesso.
      * @param integer $id
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException se o modelo não for encontrado
      */
-    public function actionUpdate($id, $id_paciente)
+    public function actionUpdate()
     {
-        $model = Triagem::find(['id'=>$id,'id_paciente' => $id_paciente ])->one();
+        $request = Yii::$app->request;
+        $model = Triagem::find()->where(['id' => $request->get('id'), 'id_paciente' => $request->get('id_paciente') ])->one();
         //$model = $this->findModel($id);
        
         if ($model->load(Yii::$app->request->post())) {
@@ -96,11 +97,11 @@ class TriagemController extends Controller
     }
 
     /**
-     * Deletes an existing Triagem model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Deleta um modelo triagem existente.
+     * Se deletar com sucesso, retorna para a página index com mensagem de sucesso.
      * @param integer $id
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException se o modelo não for encontrado
      */
     public function actionDelete($id, $id_paciente)
     {

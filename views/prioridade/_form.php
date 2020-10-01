@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\icons\Icon;
+use kartik\color\ColorInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Prioridade */
@@ -18,7 +19,9 @@ Icon::map($this);
 
     <?php echo $form->field($model, 'descricao')->textInput(['maxlength' => true]) ?>
 
-    <?php echo $form->field($model, 'cor')->textInput(['maxlength' => true]) ?>
+    <?php echo $form->field($model, 'cor')->widget(ColorInput::className(), [
+        'options' => ['placeholder' => 'Seleciona uma cor']
+    ]) ?>
 
     <?php echo $form->field($model, 'previsao_tempo')->textInput() ?>
 
