@@ -107,16 +107,10 @@ class Triagem extends \yii\db\ActiveRecord
     }
 
     public function classificarRisco() {
-            
-           
-
-        //if($this->temp == 0 || $this->pad == 00 || $this->pas == 0 || $this->sat == 0) {
-          //  echo 'execulta funcao';die();            
-        //}
         // se temperatura estiver normal 
         if($this->temp >= 36 && $this->temp <= 37.5){            
             // se pressão estiver normal
-            if($this->pas <= 120 && $this->pad <= 80 ){
+            if(($this->pas >= 90 && $this->pas <= 120) && ($this->pad >= 60 && $this->pad <= 80) ){
                 // se saturação estiver normal cor azul
                 if($this->sat == 100){
                     $this->id_prioridade = 1;
@@ -177,8 +171,9 @@ class Triagem extends \yii\db\ActiveRecord
             }
         }// temperatura pouco acima de 37.5
         else if($this->temp >= 37.5 && $this->temp <= 37.9) {
+            // pressão abaixo de 90/60
             // pressão normal
-            if($this->pas <= 120 && $this->pad <= 80){
+            if(($this->pas >= 90 && $this->pas <= 120) && ($this->pad >= 60 && $this->pad <= 80)){
                 // se saturação estiver normal cor verde
                 if($this->sat == 100){
                     $this->id_prioridade = 2;
@@ -240,8 +235,9 @@ class Triagem extends \yii\db\ActiveRecord
             }      
         }// temperatura acima de 38
         else if($this->temp >= 38 && $this->temp <= 39.9) {
+            // pressão abaixo de 90/60
             // pressão normal
-            if($this->pas <= 120 && $this->pad <= 80){
+            if(($this->pas >= 90 && $this->pas <= 120) && ($this->pad >= 60 && $this->pad <= 80)){
                 // se saturação estiver normal cor amarela
                 if($this->sat == 100){
                     $this->id_prioridade = 3;
@@ -302,7 +298,8 @@ class Triagem extends \yii\db\ActiveRecord
                 
             }      
         }// temperatura acima ou igual a 40
-        else  {            
+        else  { 
+             // pressão abaixo de 90/60
             // pressão igual ou maior a 160/100
             if($this->pas >= 160 && $this->pad >= 100) {                               
                 if($this->sat >= 90) {

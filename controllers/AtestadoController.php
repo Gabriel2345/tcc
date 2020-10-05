@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Atestado;
+use app\models\Consulta;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -37,14 +38,14 @@ class AtestadoController extends Controller
      * Lista todos os modelos Atestado.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id_consulta)
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Atestado::find(),
+            'query' => Atestado::find()->where(['id_consulta' => $id_consulta]),
         ]);
 
         return $this->render('index', [
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider,            
         ]);
     }
 
@@ -55,12 +56,13 @@ class AtestadoController extends Controller
      * Se criar com sucesso, redireciona para a view index com mensagem de sucesso.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id_consulta)
     {
         $model = new Atestado();
+        $model->id_consulta = $id_consulta;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Atestado incluído com sucesso');
+            Yii::$app->session->setFlash('success', 'Atestado criado com sucesso');
             return $this->redirect(['index']);
         }
 
@@ -121,5 +123,13 @@ class AtestadoController extends Controller
         }
 
         throw new NotFoundHttpException('A página que você procura não existe.');
+    }
+
+    public function actionAtestado($id, $id_consulta) {
+
+        $model = $this->findModel($id, $id_consulta);
+
+        
+        
     }
 }

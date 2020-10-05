@@ -7,6 +7,7 @@ use app\models\Cargo;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\db\IntegrityException;
 use yii\filters\AccessControl;
 
 
@@ -95,9 +96,16 @@ class CargoController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-        Yii::$app->session->setflash('success', 'Cargo excluído com sucesso');
-        return $this->redirect(['index']);
+        $model = $this->findModel($id);
+        
+        try {
+            $model->delete();
+            Yii::$app->session->setFlash('success', 'Cargo removido com sucesso.');
+            return $this->redirect(['index']);
+        } catch (IntegrityException $e) {
+            Yii::$app->session->setFLash('warning', 'Não foi possível excluir esse cargo. Verifique se há funcionários vinculados antes de excluir');
+            return $this->redirect(['index']);
+        }
     }
 
     /**

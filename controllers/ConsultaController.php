@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Consulta;
 use app\models\Paciente;
+use app\models\Triagem;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -41,8 +42,12 @@ class ConsultaController extends Controller
             'query' => Consulta::find()->where(['id_paciente' => $id_paciente]),
         ]);
 
+        $triagem = Triagem::find()->where(['id_paciente' => $id_paciente])->joinWith('paciente')->orderBy('id DESC')->limit(1)->one();
+
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'triagem' => $triagem
+
         ]);
     }
 

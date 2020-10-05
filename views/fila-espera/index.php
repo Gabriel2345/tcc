@@ -62,11 +62,11 @@ Icon::map($this);
             ],
             
             [
-                'attribute' => 'Triagem',
+                'label' => 'Triagem',
                 'headerOptions' => ['class' => 'col-md-2 text-center'],
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function ($model, $key, $index, $column) {
-                    return html::a(Icon::show('notes-medical'), ['/triagem/index', 'id_paciente' => $model->id_paciente]);
+                    return Html::a(Icon::show('notes-medical'), ['/triagem/index', 'id_paciente' => $model->id_paciente]);
                 },
                 'format' => 'html',
             ],

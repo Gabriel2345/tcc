@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Receita;
+use app\models\Consulta;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -36,10 +37,10 @@ class ReceitaController extends Controller
      * Lists all Receita models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id_consulta)
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Receita::find(),
+            'query' => Receita::find()->where(['id_consulta' => $id_consulta]),
         ]);
 
         return $this->render('index', [
@@ -47,31 +48,19 @@ class ReceitaController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Receita model.
-     * @param integer $Id
-     * @param integer $Consulta_Id
-     * @return mixed
-     * @throws NotFoundHttpException se o modelo não for encontrado
-     */
-    public function actionView($Id, $Consulta_Id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($Id, $Consulta_Id),
-        ]);
-    }
-
+    
     /**
      * Creates a new Receita model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id_consulta)
     {
         $model = new Receita();
+        $model->id_consulta = $id_consulta;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Id' => $model->Id, 'Consulta_Id' => $model->Consulta_Id]);
+            return $this->redirect(['index', 'id_consulta' => $id_consulta]);
         }
 
         return $this->render('create', [
@@ -87,12 +76,12 @@ class ReceitaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException se o modelo não for encontrado
      */
-    public function actionUpdate($Id, $Consulta_Id)
+    public function actionUpdate($id, $id_consulta)
     {
-        $model = $this->findModel($Id, $Consulta_Id);
+        $model = $this->findModel($id, $id_consulta);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'Id' => $model->Id, 'Consulta_Id' => $model->Consulta_Id]);
+            return $this->redirect(['index', 'id_consulta' => $id_consulta]);
         }
 
         return $this->render('update', [
@@ -108,9 +97,9 @@ class ReceitaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException se o modelo não for encontrado
      */
-    public function actionDelete($Id, $Consulta_Id)
+    public function actionDelete($id, $id_consulta)
     {
-        $this->findModel($Id, $Consulta_Id)->delete();
+        $this->findModel($id, $id_consulta)->delete();
 
         return $this->redirect(['index']);
     }
@@ -123,12 +112,12 @@ class ReceitaController extends Controller
      * @return Receita the loaded model
      * @throws NotFoundHttpException se o modelo não for encontrado
      */
-    protected function findModel($Id, $Consulta_Id)
+    protected function findModel($id, $id_consulta)
     {
-        if (($model = Receita::findOne(['Id' => $Id, 'Consulta_Id' => $Consulta_Id])) !== null) {
+        if (($model = Receita::findOne(['id' => $id, 'id_consulta' => $id_consulta])) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException('A página que você procura não existe.');
     }
 }

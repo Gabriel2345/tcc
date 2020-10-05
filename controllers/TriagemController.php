@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Triagem;
 use app\models\Paciente;
+use app\models\FilaEspera;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

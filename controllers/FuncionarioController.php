@@ -7,6 +7,7 @@ use app\models\Funcionario;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\db\IntegrityException;
 use yii\filters\AccessControl;
 
 
@@ -99,9 +100,16 @@ class FuncionarioController extends Controller
      */
     public function actionDelete($id, $id_cargo)
     {
-        $model = $this->findModel($id)->delete();
-        Yii::$app->session->setFlash('success', 'Funcionário excluído com sucesso');
-        return $this->redirect(['index']);
+        $model = $this->findModel($id);
+
+        try {
+            $model->delete();
+            Yii::$app->session->setFlash('success', 'Funcionário removido com sucesso.');
+            return $this->redirect(['/caracteristica/index']);
+        } catch (IntegrityException $e) {
+            Yii::$app->session->setFLash('warning', 'Não foi possível excluir esse funcionário. Verifique se há cargo vinculado antes de excluir');
+            return $this->redirect(['index']);
+        }
     }
 
     /**

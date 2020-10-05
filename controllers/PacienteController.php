@@ -129,8 +129,8 @@ class PacienteController extends Controller
         $triagem->pas = 0;
         $triagem->pad = 0;
         $triagem->sat = 0;
-        $triagem->obs = 'teste';
-        $triagem->id_funcionario = Yii::$app->user->identity->usuario;
+        $triagem->obs = '';
+        $triagem->id_funcionario = Yii::$app->user->identity->id;
         $triagem->id_prioridade = 1;
         $triagem->save();
         $fila = new FilaEspera();

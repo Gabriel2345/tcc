@@ -45,7 +45,7 @@ AppAsset::register($this);
                 ['label' => 'Cadastro de pacientes', 'url' => ['/paciente/index']],               
                 ['label' => 'Fila de espera', 'url' => ['/fila-espera/index']],
                 ['label' => 'Prioridades', 'url' => ['/prioridade/index']],
-                ['label' => 'Status', 'url' => ['/status/index']],              
+                ['label' => 'Status', 'url' => ['/status/index']],             
             ], 'visible' => !Yii::$app->user->isGuest],    
             
             

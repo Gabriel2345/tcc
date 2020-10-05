@@ -5,10 +5,10 @@ namespace app\models;
 use Yii;
 
 /**
- * Esse é o modelo para a tabela Atestado.
+ * Esse é o modelo para a classe Atestado.
  *
  * @property int $id Código
- * @property string $cid CID
+ * @property string $data Data
  * @property string $descricao Descrição
  * @property int $id_consulta Consulta
  *
@@ -30,10 +30,10 @@ class Atestado extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cid', 'descricao', 'id_consulta'], 'required'],
+            [['data', 'descricao', 'id_consulta'], 'required'],
+            [['data'], 'safe'],
             [['descricao'], 'string'],
             [['id_consulta'], 'integer'],
-            [['cid'], 'string', 'max' => 45],
             [['id_consulta'], 'exist', 'skipOnError' => true, 'targetClass' => Consulta::className(), 'targetAttribute' => ['id_consulta' => 'id']],
         ];
     }
@@ -45,7 +45,7 @@ class Atestado extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'Código',
-            'cid' => 'CID',
+            'data' => 'Data',
             'descricao' => 'Descrição',
             'id_consulta' => 'Consulta',
         ];
