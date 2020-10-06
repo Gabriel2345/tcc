@@ -16,8 +16,8 @@ Icon::map($this);
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?php echo Html::a(Icon::show('arrow-left') . ' Voltar', ['consulta/index', 'id_paciente' => Yii::$app->request->get('id_paciente')], ['class' => 'btn btn-danger']) ?>
-        <?= Html::a(Icon::show('plus') . ' Atestado', ['create', 'id_consulta' => Yii::$app->request->get('id_consulta')], ['class' => 'btn btn-primary']) ?>
+        <?php echo Html::a(Icon::show('arrow-left') . ' Voltar', ['consulta/index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente')], ['class' => 'btn btn-danger']) ?>
+        <?= Html::a(Icon::show('plus') . ' Atestado', ['create', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente') ], ['class' => 'btn btn-primary']) ?>
     </p>
 
 
@@ -32,6 +32,7 @@ Icon::map($this);
 
             [
                 'attribute' => 'data',
+                'format' => ['datetime', 'php:d/m/Y'],
                 'headerOptions' => ['class' => 'col-md-3 text-center'],
             ],
 

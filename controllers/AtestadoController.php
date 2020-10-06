@@ -129,7 +129,19 @@ class AtestadoController extends Controller
 
         $model = $this->findModel($id, $id_consulta);
 
-        
+        $conteudo = $this->renderPartial('atestado', [
+            'atestado' => $atestado
+        ]);
+
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE,
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'destination' => Pdf::DEST_BROWSER,
+            'content' => $conteudo
+        ]);
+
+        return $pdf->render();
         
     }
 }

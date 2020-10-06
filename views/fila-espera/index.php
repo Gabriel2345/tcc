@@ -53,6 +53,7 @@ Icon::map($this);
 
             [
                 'attribute' => 'data',
+                'format' => ['datetime', 'php:d/m/Y'],
                 'headerOptions' => ['class' => 'col-md-1 text-center'],
             ],
 
@@ -66,7 +67,7 @@ Icon::map($this);
                 'headerOptions' => ['class' => 'col-md-2 text-center'],
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function ($model, $key, $index, $column) {
-                    return Html::a(Icon::show('notes-medical'), ['/triagem/index', 'id_paciente' => $model->id_paciente]);
+                    return Html::a(Icon::show('notes-medical'), ['/triagem/index', 'id_paciente' => $model->id_paciente, 'id_fila' => $model->id]);
                 },
                 'format' => 'html',
             ],
@@ -76,7 +77,7 @@ Icon::map($this);
                 'headerOptions' => ['class' => 'col-md-2 text-center'],
                 'contentOptions' => ['class' => 'text-center'],
                 'value' => function ($model, $key, $index, $column) {
-                    return Html::a(Icon::show('user-md'), ['/consulta/index', 'id_paciente' => $model->id_paciente]);
+                    return Html::a(Icon::show('user-md'), ['/consulta/index', 'id_paciente' => $model->id_paciente, 'id_fila' => $model->id]);
                 },
                 'format' => 'html',
             ],

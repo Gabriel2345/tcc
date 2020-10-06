@@ -89,7 +89,7 @@ Icon::map($this);
                         'template' => '{update} {delete}',
                         'buttons' => [
                             'update' => function ($url, $model) {
-                                return Html::a(Icon::show('edit'), ['update', 'id' => $model->id, 'id_paciente' => $model->id_paciente], ['title' => 'Editar']);
+                                return Html::a(Icon::show('edit'), ['update', 'id' => $model->id, 'id_fila' => Yii::$app->request->get('id_fila'), 'id_paciente' => $model->id_paciente], ['title' => 'Editar']);
                             },
                             'delete' => function ($url, $model) {
                                 return Html::a(Icon::show('trash'), ['delete', 'id' => $model->id, 'id_paciente' => $model->id_paciente], ['title' => 'Excluir'], ['data' => ['confirm' => 'Tem certeza que deseja excluir essa consulta?']]);

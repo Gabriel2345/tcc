@@ -6,6 +6,7 @@ use Yii;
 use app\models\Consulta;
 use app\models\Paciente;
 use app\models\Triagem;
+use app\models\FilaEspera;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -78,17 +79,23 @@ class ConsultaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException Se o modelo não for encontrado
      */
-    public function actionUpdate($id, $id_paciente)
+    public function actionUpdate()
     {
-        $model = $this->findModel($id);
+        $request = Yii::$app->request;
+        $model = Consulta::find()->where(['id'=> $request->get('id'), 'id_paciente' => $request->get('id_paciente')])->one();
+        $fila = Yii::$app->request->get('id_fila');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $fila = FilaEspera::find()->where(['id' => $request->get('id_fila')])->one();
+            $fila->id_status = 3;
+            $fila->save();
             Yii::$app->session->setFlash('success', 'Consulta editada com sucesso');
-            return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+            //return $this->redirect(['index', 'id_paciente' => $id_paciente]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'fila' => 'id_fila'
         ]);
     }
 

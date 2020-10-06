@@ -85,6 +85,9 @@ class TriagemController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $model->classificarRisco();
             if($model->save()){
+                $fila = FilaEspera::find()->where(['id' => $request->get('id_fila')])->one();
+                $fila->id_status = 2;
+                $fila->save();
                 Yii::$app->session->setFlash('success', 'Triagem alterada com sucesso');
                 //return $this->redirect(['index', 'id_paciente' => $id_paciente]);
             }

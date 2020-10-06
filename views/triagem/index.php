@@ -52,7 +52,7 @@ Icon::map($this);
                         return Html::a(Icon::show('trash'), ['delete', 'id' => $model->id, 'id_paciente' => Yii::$app->request->get('id_paciente')], ['title' => 'Excluir', 'data' => ['confirm' => 'Tem certeza que deseja excluir esse atendimento?']] );
                     },
                     'update' => function($url, $model) {
-                        return Html::a(Icon::show('edit'), ['update', 'id' => $model->id, 'id_paciente' => Yii::$app->request->get('id_paciente')], ['title' => 'Editar']);
+                        return Html::a(Icon::show('edit'), ['update', 'id' => $model->id, 'id_fila' => Yii::$app->request->get('id_fila'), 'id_paciente' => Yii::$app->request->get('id_paciente')], ['title' => 'Editar']);
                     }
                 ],
             ],

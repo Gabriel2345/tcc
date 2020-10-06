@@ -170,7 +170,7 @@ class Triagem extends \yii\db\ActiveRecord
                 }               
             }
         }// temperatura pouco acima de 37.5
-        else if($this->temp >= 37.5 && $this->temp <= 37.9) {
+        else if($this->temp > 37.5 && $this->temp <= 37.9) {
             // pressão abaixo de 90/60
             // pressão normal
             if(($this->pas >= 90 && $this->pas <= 120) && ($this->pad >= 60 && $this->pad <= 80)){
@@ -226,16 +226,17 @@ class Triagem extends \yii\db\ActiveRecord
             else if($this->pas >= 160 && $this->pad >= 100) {
                 // saturação abaixo de 90 caso de emergência               
                 if($this->sat <= 90) {
-                    $this->prioridade = 5;
+                    $this->id_prioridade = 5;
                 }else{
                     // cor laranja
-                    $this->prioridade = 4;
+                    $this->id_prioridade = 4;
                 }
                 
             }      
         }// temperatura acima de 38
         else if($this->temp >= 38 && $this->temp <= 39.9) {
             // pressão abaixo de 90/60
+            
             // pressão normal
             if(($this->pas >= 90 && $this->pas <= 120) && ($this->pad >= 60 && $this->pad <= 80)){
                 // se saturação estiver normal cor amarela
