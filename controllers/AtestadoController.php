@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use kartik\mpdf\Pdf;
 
 /**
  * AtestadoController implements the CRUD actions for Atestado model.
@@ -60,14 +61,16 @@ class AtestadoController extends Controller
     {
         $model = new Atestado();
         $model->id_consulta = $id_consulta;
+        $model->data = date('Y-m-d');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Atestado criado com sucesso');
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente')]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'consulta' => $id_consulta
         ]);
     }
 
@@ -85,11 +88,12 @@ class AtestadoController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Atestado alterado com sucesso');
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente')]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'consulta' => $id_consulta
         ]);
     }
 
@@ -105,7 +109,7 @@ class AtestadoController extends Controller
     {
         $this->findModel($id, $id_consulta)->delete();
         Yii::$app->session->setFlash('success', 'Atestado excluído com sucesso');
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
     }
 
     /**
@@ -129,9 +133,12 @@ class AtestadoController extends Controller
 
         $model = $this->findModel($id, $id_consulta);
 
+        
         $conteudo = $this->renderPartial('atestado', [
-            'atestado' => $atestado
+            'atestado' => $model,
         ]);
+
+
 
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE,

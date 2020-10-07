@@ -18,7 +18,7 @@ Icon::map($this);
 
     <p>
         <?php echo html::a(Icon::show('arrow-left') . ' Voltar', ['/fila-espera/index'], ['class' => 'btn btn-danger']) ?>
-        <?php echo Html::a(Icon::show('plus') . ' Consulta', ['create', 'id_paciente' => Yii::$app->request->get('id_paciente')], ['class' => 'btn btn-primary']) ?>
+        <?php echo Html::a(Icon::show('plus') . ' Consulta', ['create', 'id_fila' => Yii::$app->request->get('id_fila'), 'id_paciente' => Yii::$app->request->get('id_paciente')], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <div class="panel panel-default">
@@ -92,7 +92,7 @@ Icon::map($this);
                                 return Html::a(Icon::show('edit'), ['update', 'id' => $model->id, 'id_fila' => Yii::$app->request->get('id_fila'), 'id_paciente' => $model->id_paciente], ['title' => 'Editar']);
                             },
                             'delete' => function ($url, $model) {
-                                return Html::a(Icon::show('trash'), ['delete', 'id' => $model->id, 'id_paciente' => $model->id_paciente], ['title' => 'Excluir'], ['data' => ['confirm' => 'Tem certeza que deseja excluir essa consulta?']]);
+                                return Html::a(Icon::show('trash'), ['delete', 'id' => $model->id, 'id_fila' => Yii::$app->request->get('id_fila'), 'id_paciente' => $model->id_paciente], ['title' => 'Excluir'], ['data' => ['confirm' => 'Tem certeza que deseja excluir essa consulta?']]);
                             }
                         ]
                     ],

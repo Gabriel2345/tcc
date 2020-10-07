@@ -59,16 +59,22 @@ class ConsultaController extends Controller
      */
     public function actionCreate($id_paciente)
     {
+        $request = Yii::$app->request;
         $model = new Consulta();
         $model->id_paciente = $id_paciente;
+        $fila = Yii::$app->request->get('id_fila');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {   
+            $fila = FilaEspera::find()->where(['id' => $request->get('id_fila')])->one();
+            $fila->id_status = 3;
+            $fila->save();                 
             Yii::$app->session->setFlash('success', 'Consulta registrada com sucesso');
-            return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+            return $this->redirect(['index', 'id_paciente' => $id_paciente, 'id_fila' => $fila]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            
         ]);
     }
 
@@ -90,7 +96,7 @@ class ConsultaController extends Controller
             $fila->id_status = 3;
             $fila->save();
             Yii::$app->session->setFlash('success', 'Consulta editada com sucesso');
-            //return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+            return $this->redirect(['index', 'id_paciente' => $id_paciente, 'id_fila' => $fila]);
         }
 
         return $this->render('update', [
@@ -108,9 +114,10 @@ class ConsultaController extends Controller
      */
     public function actionDelete($id, $id_paciente)
     {
+        $fila = Yii::$app->request->get('id_fila');
         $this->findModel($id)->delete();
         Yii::$app->session->setFlash('success', 'Consulta excluída com sucesso');
-        return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+        return $this->redirect(['index', 'id_paciente' => $id_paciente, 'id_fila' => $fila]);
     }
 
     /**
