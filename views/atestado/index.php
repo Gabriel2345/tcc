@@ -42,18 +42,20 @@ Icon::map($this);
             
             [
                 'class' => 'yii\grid\ActionColumn',
+                'header' => 'Atestado',
                 'headerOptions' => ['class' => 'col-md-1 text-center'],
                 'contentOptions' => ['class' => 'text-center'],
                 'template' => '{atestado}',
                 'buttons' => [
                     'atestado' => function ($url, $model) {
-                        return Html::a(Icon::show('file'), ['atestado', 'id' => $model->id, 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')], ['target' => '@blank']);
+                        return Html::a(Icon::show('file'), ['atestado', 'id' => $model->id, 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')], ['title' => 'Gerar atestado'], ['target' => '@blank']);
                     }
                 ]
             ],
             
             [
                 'class' => 'yii\grid\ActionColumn',
+                'header' => 'Ações',
                 'headerOptions' => ['class' => 'col-md-1 text-center'],
                 'contentOptions' => ['class' => 'text-center'],
                 'template' => '{update} {delete}',

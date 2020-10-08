@@ -22,23 +22,22 @@ Icon::map($this);
     </p>
 
     <div class="panel panel-default">
-    <div class="panel-heading">Informações da triagem</div>
-    <div class="panel-body">
-        <dl>
-            <dt>Nome</dt>
-            <dd><?php echo $triagem->paciente->nome; ?></dd>
-            <dt>Temperatura</dt>
-            <dd><?php echo $triagem->temp; ?></dd>
-            <dt>Pressão arterial sistólica</dt>
-            <dd><?php echo $triagem->pas; ?></dd>
-            <dt>Pressão arterial diastólica</dt>
-            <dd><?php echo $triagem->pad; ?></dd>
-            <dt>Saturação</dt>
-            <dd><?php echo $triagem->sat; ?></dd>
-        </dl>
-    
+        <div class="panel-heading">Informações da triagem</div>
+            <div class="panel-body">
+                <dl>
+                    <dt>Nome</dt>
+                    <dd><?php echo $triagem->paciente->nome; ?></dd>
+                    <dt>Temperatura</dt>
+                    <dd><?php echo $triagem->temp; ?></dd>
+                    <dt>Pressão arterial sistólica</dt>
+                    <dd><?php echo $triagem->pas; ?></dd>
+                    <dt>Pressão arterial diastólica</dt>
+                    <dd><?php echo $triagem->pad; ?></dd>
+                    <dt>Saturação</dt>
+                    <dd><?php echo $triagem->sat; ?></dd>
+                </dl>    
+            </div>
     </div>
-</div>
 
         
             <?php echo GridView::widget([

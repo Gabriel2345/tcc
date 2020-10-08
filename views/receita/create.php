@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Receita */
 
-$this->title = 'Create Receita';
-$this->params['breadcrumbs'][] = ['label' => 'Receitas', 'url' => ['index']];
+$this->title = 'Nova Receita';
+$this->params['breadcrumbs'][] = ['label' => 'Gerenciar Receitas', 'url' => ['index', 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="receita-create">

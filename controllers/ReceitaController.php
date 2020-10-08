@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use kartik\mpdf\Pdf;
 
 /**
  * ReceitaController implements the CRUD actions for Receita model.
@@ -58,9 +59,11 @@ class ReceitaController extends Controller
     {
         $model = new Receita();
         $model->id_consulta = $id_consulta;
+        $model->data = date('d/m/Y');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id_consulta' => $id_consulta]);
+            Yii::$app->session->setFlash('success', 'Receita criada com sucesso');
+            return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
         }
 
         return $this->render('create', [
@@ -81,7 +84,8 @@ class ReceitaController extends Controller
         $model = $this->findModel($id, $id_consulta);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id_consulta' => $id_consulta]);
+            Yii::$app->session->setFlash('success', 'Receita alterada com sucesso');
+            return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
         }
 
         return $this->render('update', [
@@ -100,8 +104,8 @@ class ReceitaController extends Controller
     public function actionDelete($id, $id_consulta)
     {
         $this->findModel($id, $id_consulta)->delete();
-
-        return $this->redirect(['index']);
+        Yii::$app->session->setFlash('success', 'Receita excluída com sucesso');
+        return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
     }
 
     /**
@@ -119,5 +123,25 @@ class ReceitaController extends Controller
         }
 
         throw new NotFoundHttpException('A página que você procura não existe.');
+    }
+
+    public function actionReceita($id, $id_consulta) {
+
+        $model = $this->findModel($id, $id_consulta);
+
+        $conteudo = $this->renderPartial('receita', [
+            'receita' => $model
+        ]);
+
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE,
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_LANDSCAPE,
+            'destination' => Pdf::DEST_BROWSER,
+            'content' => $conteudo
+        ]);
+
+        return $pdf->render();
+
     }
 }

@@ -61,7 +61,7 @@ class AtestadoController extends Controller
     {
         $model = new Atestado();
         $model->id_consulta = $id_consulta;
-        $model->data = date('Y-m-d');
+        $model->data = date('d/m/Y');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Atestado criado com sucesso');
@@ -143,7 +143,7 @@ class AtestadoController extends Controller
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE,
             'format' => Pdf::FORMAT_A4,
-            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'orientation' => Pdf::ORIENT_LANDSCAPE,
             'destination' => Pdf::DEST_BROWSER,
             'content' => $conteudo
         ]);

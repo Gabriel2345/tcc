@@ -10,6 +10,7 @@ use app\models\FilaEspera;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\db\IntegrityException;
 use yii\filters\AccessControl;
 
 /**
@@ -115,9 +116,18 @@ class ConsultaController extends Controller
     public function actionDelete($id, $id_paciente)
     {
         $fila = Yii::$app->request->get('id_fila');
-        $this->findModel($id)->delete();
-        Yii::$app->session->setFlash('success', 'Consulta excluída com sucesso');
-        return $this->redirect(['index', 'id_paciente' => $id_paciente, 'id_fila' => $fila]);
+        $model = $this->findModel($id, $id_paciente);
+
+        try{
+            $model->delete();
+            Yii::$app->session->setFlash('success', 'Consulta removida com sucesso');
+            return $this->redirect(['index', 'id_paciente' => $id_paciente, 'id_fila' => $fila]);
+        }catch(IntegrityException $e) {
+            Yii::$app->session->setFlash('warning', 'Não foi possível excluir esta consulta. Verifique se há atestados ou receitas vinculados antes de excluir');
+            return $this->redirect(['index', 'id_paciente' => $id_paciente, 'id_fila' => $fila]);
+        }
+
+        
     }
 
     /**
