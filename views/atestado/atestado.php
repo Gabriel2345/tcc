@@ -7,35 +7,38 @@
 
 
 
-<div class="container" style="width: 50%">
+
 <h3 style="text-align: center">Atestado</h3>
-    <table border="0">
+   
+<p style="text-align: justify">Atesto que o(a) Sr.(a) <?php echo $atestado->consulta->paciente->nome; ?> esteve em consulta nesta unidade das ______ às _______.</p>                
+        
+              
+                        
+                            
+
+                            
+                        
+                <p>Foi orientado a voltar ao trabalho.</p>
+
                 
-            <tr>
-                <td style="text-align: center">
-                        Atesto que o(a) Sr.(a) <?php echo $atestado->consulta->paciente->nome; ?>
-                        foi atendido das ________ às ________ nesta Unidade de saúde.
-                </td>
-             </tr>
-             <tr>
-                <td>
-                Foi orientado a voltar ao trabalho
 
-                Foi orientado a permanecer em repouso hoje
+                <p>Foi orientado a permanecer em repouso hoje.</p>
 
-                Deverá permanecer em repouso _____ dia(s) a partir desta data
+                
 
-                CID:
+                <p>Deverá permanecer em repouso _____ dia(s) a partir desta data.</p>
+
+                <p>CID:</p>
 
                 <strong>Data:</strong><?php echo $atestado->data; ?>
 
-                ________________________________________________
-                Assinatura do médico
-                </td>
+                <p style="text-align: center">________________________________________________</p>
+                <p style="text-align: center">Assinatura e carimbo do médico</p>
+                
 
-             </tr>
-    </table>
-</div>
+             
+  
+
         
     
 

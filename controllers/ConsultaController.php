@@ -64,6 +64,7 @@ class ConsultaController extends Controller
         $model = new Consulta();
         $model->id_paciente = $id_paciente;
         $fila = Yii::$app->request->get('id_fila');
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {   
             $fila = FilaEspera::find()->where(['id' => $request->get('id_fila')])->one();

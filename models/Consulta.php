@@ -8,6 +8,9 @@ use Yii;
  * Esse é o modelo para a tabela consulta.
  *
  * @property int $id Código
+ * @property date $data Data
+ * @property time $hora Hora
+ * @property text $obs Observação
  * @property int $id_funcionario Funcionário
  * @property int $id_paciente Paciente
  *
@@ -32,7 +35,9 @@ class Consulta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_funcionario', 'id_paciente'], 'required'],
+            [['data', 'hora', 'obs', 'id_funcionario', 'id_paciente'], 'required'],
+            [['data', 'hora'], 'safe'],
+            [['obs'], 'string'],
             [['id_funcionario', 'id_paciente'], 'integer'],
             [['id_funcionario'], 'exist', 'skipOnError' => true, 'targetClass' => Funcionario::className(), 'targetAttribute' => ['id_funcionario' => 'id']],
             [['id_paciente'], 'exist', 'skipOnError' => true, 'targetClass' => Paciente::className(), 'targetAttribute' => ['id_paciente' => 'id']],
@@ -46,6 +51,9 @@ class Consulta extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'Código',
+            'data' => 'Data',
+            'hora' => 'Hora',
+            'obs' => 'Observação',
             'id_funcionario' => 'Funcionário',
             'id_paciente' => 'Paciente',
         ];

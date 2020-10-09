@@ -37,6 +37,17 @@ Icon::map($this);
             ],
 
             [
+                'attribute' => 'data',
+                'format' => ['datetime', 'php:d/m/Y'],
+                'headerOptions' => ['class' => 'col-md-1 text-center']
+            ],
+
+            [
+                'attribute' => 'hora',
+                'headerOptions' => ['class' => 'col-md-1 text-center']
+            ],
+
+            [
                 'attribute' => 'obs',
                 'headerOptions' => ['class' => 'col-md-4 text-center'],
             ],            

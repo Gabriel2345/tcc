@@ -50,6 +50,17 @@ Icon::map($this);
                     ],
 
                     [
+                        'attribute' => 'data',
+                        'format' => ['datetime', 'php:d/m/Y'],
+                        'headerOptions' => ['class' => 'col-md-1 text-center']
+                    ],
+
+                    [
+                        'attribute' => 'hora',
+                        'headerOptions' => ['class' => 'col-md-1 text-center']
+                    ],
+
+                    [
                         'attribute' => 'id_paciente',
                         'value' => 'paciente.nome'
                     ],
@@ -57,7 +68,7 @@ Icon::map($this);
                     [
                         'attribute' => 'id_funcionario',
                         'value' => 'funcionario.nome',
-                        'headerOptions' => ['class' => 'col-md-4']
+                        'headerOptions' => ['class' => 'col-md-2']
                     ],
                     
                     [
@@ -83,6 +94,7 @@ Icon::map($this);
 
                     [
                         'class' => 'yii\grid\ActionColumn',
+                        'header' => 'Ações',
                         'headerOptions' => ['class' => 'col-md-1 text-center'],
                         'contentOptions' => ['class' => 'text-center'],
                         'template' => '{update} {delete}',

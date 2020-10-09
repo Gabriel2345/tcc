@@ -8,6 +8,8 @@ use Yii;
  * Modelo para a tabela Triagem.
  *
  * @property int $id Código
+ * @property date $data Data
+ * @property time $hora Hora
  * @property float $temp Temperatura
  * @property int $sat Saturação
  * @property int $pad Pressão arterial diastólica
@@ -38,7 +40,8 @@ class Triagem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['temp', 'sat', 'pad', 'pas', 'id_funcionario', 'id_paciente', 'id_prioridade'], 'required'],
+            [['data', 'hora', 'temp', 'sat', 'pad', 'pas', 'id_funcionario', 'id_paciente', 'id_prioridade'], 'required'],
+            [['data', 'hora'], 'safe'],
             [['temp'], 'number'],
             [['sat', 'pad', 'pas', 'id_funcionario', 'id_paciente', 'id_prioridade'], 'integer'],
             [['obs'], 'string'],
@@ -55,6 +58,8 @@ class Triagem extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'Código',
+            'data' => 'Data',
+            'hora' => 'Hora',
             'temp' => 'Temperatura',
             'sat' => 'Saturação',
             'pad' => 'Pressão arterial diastólica',

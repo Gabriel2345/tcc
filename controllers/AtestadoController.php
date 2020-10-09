@@ -142,6 +142,7 @@ class AtestadoController extends Controller
 
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE,
+            'marginRight' => 150,
             'format' => Pdf::FORMAT_A4,
             'orientation' => Pdf::ORIENT_LANDSCAPE,
             'destination' => Pdf::DEST_BROWSER,

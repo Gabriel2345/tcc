@@ -16,7 +16,12 @@ Icon::map($this);
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php echo $form->field($model, 'id_paciente')->textInput() ?>
+    <?php echo $form->field($model, 'id_paciente')->hiddenInput() ?>
+    <?php echo $model->paciente->nome; ?>
+
+    <?php echo $form->field($model, 'data')->textInput(['type' => 'date']) ?>
+
+    <?php echo $form->field($model, 'hora')->textInput() ?>
     
     <?php echo $form->field($model, 'temp')->textInput(['type' => 'number', 'min' => '35', 'max' => '42', 'step' => '0.1']) ?>
 
@@ -24,7 +29,7 @@ Icon::map($this);
 
     <?php echo $form->field($model, 'pad')->textInput() ?>
 
-    <?php echo $form->field($model, 'sat')->textInput() ?>
+    <?php echo $form->field($model, 'sat')->textInput(['type' => 'number', 'min' => '70', 'max' => '100']) ?>
 
     <?php echo $form->field($model, 'obs')->textArea() ?>
 
@@ -32,7 +37,6 @@ Icon::map($this);
     <?php echo $form->field($model, 'id_prioridade')->dropDownList($prioridades) ?>
 
     <?php echo $form->field($model, 'id_funcionario')->hiddenInput()->label(false) ?>
-
 
 
     <div class="form-group">

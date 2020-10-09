@@ -19,10 +19,16 @@ Icon::map($this);
 
     <?php echo $form->field($model, 'id')->hiddenInput()->label(false) ?>
 
+    <?php echo $form->field($model, 'data')->textInput(['type' => 'date']) ?>
+
+    <?php echo $form->field($model, 'hora')->textInput() ?>
+
+    <?php echo $form->field($model, 'obs')->textArea() ?>
+
     <?php $pacientes = ArrayHelper::map(Paciente::find()->orderBy('nome')->all(), 'id', 'nome') ?>
     <?php echo $form->field($model, 'id_paciente')->dropDownList($pacientes, ['prompt' => 'Selecione']) ?>
 
-    <?php echo $form->field($model, 'id_funcionario')->textInput() ?>
+    <?php echo $form->field($model, 'id_funcionario')->hiddenInput()->label(false) ?>
 
     
 
