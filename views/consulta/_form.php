@@ -28,13 +28,13 @@ Icon::map($this);
     <?php $pacientes = ArrayHelper::map(Paciente::find()->orderBy('nome')->all(), 'id', 'nome') ?>
     <?php echo $form->field($model, 'id_paciente')->dropDownList($pacientes, ['prompt' => 'Selecione']) ?>
 
-    <?php echo $form->field($model, 'id_funcionario')->hiddenInput()->label(false) ?>
+    <?php echo $form->field($model, 'id_funcionario')->textInput() ?>
 
     
 
     <div class="form-group">
         <?php echo Html::submitButton(Icon::show('check') . ' Salvar', ['class' => 'btn btn-success']) ?>
-        <?php echo Html::a(Icon::show('times') . ' Cancelar', ['index', 'id_paciente' => Yii::$app->request->get('id_paciente')], ['class' => 'btn btn-danger']) ?>
+        <?php echo Html::a(Icon::show('times') . ' Cancelar', ['index', 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Consulta */
 
 $this->title = 'Update Consulta';
-$this->params['breadcrumbs'][] = ['label' => 'Gerenciar Consultas', 'url' => ['index', 'id_paciente' => Yii::$app->request->get('id_paciente')]];
+$this->params['breadcrumbs'][] = ['label' => 'Gerenciar Consultas', 'url' => ['index', 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="consulta-update">

@@ -22,9 +22,7 @@ Icon::map($this);
   
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'rowOptions' => function ($model) {
-        //    return ['style' => 'background-color: ' . $model->triagem->prioridade->cor];
-        //},
+        
         'columns' => [
             [
                 'attribute' => 'id_status',
@@ -53,7 +51,6 @@ Icon::map($this);
 
             [
                 'attribute' => 'data',
-                'format' => ['datetime', 'php:d/m/Y'],
                 'headerOptions' => ['class' => 'col-md-1 text-center'],
             ],
 

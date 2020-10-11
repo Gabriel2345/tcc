@@ -38,7 +38,6 @@ Icon::map($this);
 
             [
                 'attribute' => 'data',
-                'format' => ['datetime', 'php:d/m/Y'],
                 'headerOptions' => ['class' => 'col-md-1 text-center']
             ],
 

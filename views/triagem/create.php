@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Triagem */
 
 $this->title = 'Nova Triagem';
-$this->params['breadcrumbs'][] = ['label' => 'Gerenciar triagems', 'url' => ['index', 'id_paciente' => Yii::$app->request->get('id_paciente')]];
+$this->params['breadcrumbs'][] = ['label' => 'Gerenciar triagems', 'url' => ['index', 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="triagem-create">

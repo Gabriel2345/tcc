@@ -125,7 +125,7 @@ class PacienteController extends Controller
         
         $triagem = new Triagem();
         $triagem->id_paciente = $id_paciente;
-        $triagem->data = date('d/m/Y');
+        $triagem->data = date('Y-m-d');
         $triagem->hora = date('H:i:s');
         $triagem->temp = 0;
         $triagem->pas = 0;

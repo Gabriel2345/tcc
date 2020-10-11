@@ -9,6 +9,7 @@ use app\models\FilaEspera;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\db\IntegrityException;
 use yii\filters\AccessControl;
 
 /**
@@ -109,9 +110,17 @@ class TriagemController extends Controller
      */
     public function actionDelete($id, $id_paciente)
     {
-        $this->findModel($id)->delete();
-        Yii::$app->session->setFlash('success', 'Triagem excluída com sucesso');
-        return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+        $model = $this->findModel($id, $id_paciente);
+
+        try {
+            $model->delete();
+            Yii::$app->session->setFlash('success', 'Triagem excluída com sucesso');
+            return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+        }catch (IntegrityException $e) {
+            Yii::$app->session->setFlash('warning', 'Não foi possível excluir esta triagem. Paciente ainda em atendimento');
+            return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+        }
+        
     }
 
     /**
