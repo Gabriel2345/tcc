@@ -110,15 +110,16 @@ class TriagemController extends Controller
      */
     public function actionDelete($id, $id_paciente)
     {
+        $fila = Yii::$app->request->get('id_fila');
         $model = $this->findModel($id, $id_paciente);
 
         try {
             $model->delete();
             Yii::$app->session->setFlash('success', 'Triagem excluída com sucesso');
-            return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+            return $this->redirect(['index', 'id_paciente' => $id_paciente, 'id_fila' => $fila]);
         }catch (IntegrityException $e) {
             Yii::$app->session->setFlash('warning', 'Não foi possível excluir esta triagem. Paciente ainda em atendimento');
-            return $this->redirect(['index', 'id_paciente' => $id_paciente]);
+            return $this->redirect(['index', 'id_paciente' => $id_paciente, 'id_fila' => $fila]);
         }
         
     }

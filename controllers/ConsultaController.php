@@ -76,7 +76,7 @@ class ConsultaController extends Controller
 
         return $this->render('create', [
             'model' => $model,
-            
+            'fila' => 'id_fila'
         ]);
     }
 

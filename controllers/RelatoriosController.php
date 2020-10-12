@@ -43,8 +43,18 @@ class RelatoriosController extends \yii\web\Controller
                 'consultas' => $consultas
             ]);
 
-            return $conteudo;
+    
             //b. Vincular view com PDF e apresentar ao usuário
+            $pdf = new Pdf([
+                'mode' => Pdf::MODE_CORE,
+                'format' => Pdf::FORMAT_A4,
+                'orientation' => Pdf::ORIENT_PORTRAIT,
+                'destination' => Pdf::DEST_DOWNLOAD,
+                'content' => $conteudo,
+                'filename' => 'ConsultaData.pdf'
+            ]);
+
+            return $pdf->render();
 
         }
         return $this->render('consultas', [
