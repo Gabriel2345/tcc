@@ -41,6 +41,7 @@ class AtestadoController extends Controller
      */
     public function actionIndex($id_consulta)
     {
+        
         $dataProvider = new ActiveDataProvider([
             'query' => Atestado::find()->where(['id_consulta' => $id_consulta]),
         ]);
