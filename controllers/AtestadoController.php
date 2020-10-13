@@ -63,10 +63,11 @@ class AtestadoController extends Controller
         $model = new Atestado();
         $model->id_consulta = $id_consulta;
         $model->data = date('d/m/Y');
+        $fila = Yii::$app->request->get('id_fila');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Atestado criado com sucesso');
-            return $this->redirect(['index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente')]);
+            return $this->redirect(['index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')]);
         }
 
         return $this->render('create', [
@@ -86,10 +87,11 @@ class AtestadoController extends Controller
     public function actionUpdate($id, $id_consulta)
     {
         $model = $this->findModel($id, $id_consulta);
+        $fila = Yii::$app->request->get('id_fila');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Atestado alterado com sucesso');
-            return $this->redirect(['index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente')]);
+            return $this->redirect(['index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')]);
         }
 
         return $this->render('update', [
@@ -108,9 +110,10 @@ class AtestadoController extends Controller
      */
     public function actionDelete($id, $id_consulta)
     {
+        $fila = Yii::$app->request->get('id_fila');
         $this->findModel($id, $id_consulta)->delete();
         Yii::$app->session->setFlash('success', 'Atestado excluído com sucesso');
-        return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
+        return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')]);
     }
 
     /**
@@ -133,7 +136,7 @@ class AtestadoController extends Controller
     public function actionAtestado($id, $id_consulta) {
 
         $model = $this->findModel($id, $id_consulta);
-
+        $model->data = date('d/m/Y');
         
         $conteudo = $this->renderPartial('atestado', [
             'atestado' => $model,
@@ -144,7 +147,6 @@ class AtestadoController extends Controller
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE,
             'marginRight' => 150,
-            'marginBottom' => 0,
             'format' => Pdf::FORMAT_A4,
             'orientation' => Pdf::ORIENT_LANDSCAPE,
             'destination' => Pdf::DEST_BROWSER,

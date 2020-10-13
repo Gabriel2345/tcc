@@ -60,10 +60,11 @@ class ReceitaController extends Controller
         $model = new Receita();
         $model->id_consulta = $id_consulta;
         $model->data = date('d/m/Y');
+        $fila = Yii::$app->request->get('id_fila');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Receita criada com sucesso');
-            return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
+            return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_fila' => Yii::$app->request->get('id_fila'), 'id_paciente' => Yii::$app->request->get('id_paciente')]);
         }
 
         return $this->render('create', [
@@ -82,10 +83,11 @@ class ReceitaController extends Controller
     public function actionUpdate($id, $id_consulta)
     {
         $model = $this->findModel($id, $id_consulta);
+        $fila = Yii::$app->request->get('id_fila');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Receita alterada com sucesso');
-            return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
+            return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_fila' => Yii::$app->request->get('id_fila'), 'id_paciente' => Yii::$app->request->get('id_paciente')]);
         }
 
         return $this->render('update', [
@@ -103,9 +105,10 @@ class ReceitaController extends Controller
      */
     public function actionDelete($id, $id_consulta)
     {
+        $fila = Yii::$app->request->get('id_fila');
         $this->findModel($id, $id_consulta)->delete();
         Yii::$app->session->setFlash('success', 'Receita excluída com sucesso');
-        return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
+        return $this->redirect(['index', 'id_consulta' => $id_consulta, 'id_fila' => Yii::$app->request->get('id_fila'), 'id_paciente' => Yii::$app->request->get('id_paciente')]);
     }
 
     /**
@@ -128,13 +131,14 @@ class ReceitaController extends Controller
     public function actionReceita($id, $id_consulta) {
 
         $model = $this->findModel($id, $id_consulta);
-
+        $model->data = date('d/m/Y');
         $conteudo = $this->renderPartial('receita', [
             'receita' => $model
         ]);
 
         $pdf = new Pdf([
             'mode' => Pdf::MODE_CORE,
+            'marginRight' => 150,
             'format' => Pdf::FORMAT_A4,
             'orientation' => Pdf::ORIENT_LANDSCAPE,
             'destination' => Pdf::DEST_BROWSER,

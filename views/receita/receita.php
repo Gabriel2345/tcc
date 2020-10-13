@@ -4,22 +4,25 @@
  */
 ?>
 
+<h3 style="text-align: center">RECEITA MÉDICA</h3>
 <div class="panel panel-default">
-        <div class="panel-heading">Dados do paciente</div>
-            <div class="panel-body">
-                <dl>
-                    <dt>Nome</dt>
-                    <dd><?php echo $receita->consulta->paciente->nome; ?></dd>
-                    <dt>Endereço</dt>
-                    <dd><?php echo $receita->consulta->paciente->endereco; ?></dd>
-                    <dt>Telefone</dt>
-                    <dd><?php echo $receita->consulta->paciente->telefone; ?></dd>
-                    
-                </dl>    
-            </div>
+    <div class="panel-heading">Dados do paciente</div>
+        <div class="panel-body">
+            <dl>
+                <dt>Nome: <?php echo $receita->consulta->paciente->nome; ?></dt>
+                <br>
+                <dt>Endereço: <?php echo $receita->consulta->paciente->endereco; ?></dt>
+                <br>
+                <dt>Telefone: <?php echo $receita->consulta->paciente->telefone; ?></dt>                         
+            </dl>    
+        </div>
 </div>
-
-<h1 style="text-align: center">Receita médica</h1>
-
-<p>Data:</p><?php echo $receita->data; ?>
+<br>
+<br>
 <p><?php echo $receita->descricao; ?></p>
+<br>
+<p>Data:<?php echo $receita->data; ?></p>   
+<br>
+<p style="text-align: center">___________________________________</p>
+<p style="text-align: center">Assinatura e carimbo do médico</p>
+

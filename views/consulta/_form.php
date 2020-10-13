@@ -29,6 +29,7 @@ Icon::map($this);
     <?php echo $form->field($model, 'id_paciente')->dropDownList($pacientes, ['prompt' => 'Selecione']) ?>
 
     <?php echo $form->field($model, 'id_funcionario')->textInput() ?>
+    
 
     
 

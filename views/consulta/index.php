@@ -76,7 +76,7 @@ Icon::map($this);
                         'headerOptions' => ['class' => 'col-md-1 text-center'],
                         'contentOptions' => ['class' => 'text-center'],
                         'value' => function ($model, $key, $index, $column) {
-                            return Html::a(Icon::show('clipboard'), ['/atestado/index', 'id_consulta' => $model->id, 'id_paciente' => $model->id_paciente]);
+                            return Html::a(Icon::show('clipboard'), ['/atestado/index', 'id_consulta' => $model->id, 'id_paciente' => $model->id_paciente, 'id_fila' => Yii::$app->request->get('id_fila')]);
                         },
                         'format' => 'html'
 
@@ -87,7 +87,7 @@ Icon::map($this);
                         'headerOptions' => ['class' => 'col-md-1 text-center'],
                         'contentOptions' => ['class' => 'text-center'],
                         'value' => function ($model, $key, $index, $column) {
-                            return Html::a(Icon::show('clipboard'), ['/receita/index', 'id_consulta' => $model->id, 'id_paciente' => $model->id_paciente]);
+                            return Html::a(Icon::show('clipboard'), ['/receita/index', 'id_consulta' => $model->id, 'id_paciente' => $model->id_paciente, 'id_fila' => Yii::$app->request->get('id_fila')]);
                         },
                         'format' => 'html'
                     ],

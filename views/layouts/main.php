@@ -46,6 +46,9 @@ AppAsset::register($this);
                 ['label' => 'Fila de espera', 'url' => ['/fila-espera/index']],
                 ['label' => 'Prioridades', 'url' => ['/prioridade/index']],
                 ['label' => 'Status', 'url' => ['/status/index']],             
+            ], 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'Relatórios', 'items' => [
+                ['label' => 'Consultas por data', 'url' => ['/relatorios/consultas']]                     
             ], 'visible' => !Yii::$app->user->isGuest],    
             
             

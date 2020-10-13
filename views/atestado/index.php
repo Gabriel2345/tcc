@@ -16,8 +16,8 @@ Icon::map($this);
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?php echo Html::a(Icon::show('arrow-left') . ' Voltar', ['consulta/index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente')], ['class' => 'btn btn-danger']) ?>
-        <?= Html::a(Icon::show('plus') . ' Atestado', ['create', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente') ], ['class' => 'btn btn-primary']) ?>
+        <?php echo Html::a(Icon::show('arrow-left') . ' Voltar', ['consulta/index', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')], ['class' => 'btn btn-danger']) ?>
+        <?= Html::a(Icon::show('plus') . ' Atestado', ['create', 'id_consulta' => Yii::$app->request->get('id_consulta'), 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila') ], ['class' => 'btn btn-primary']) ?>
     </p>
 
 
@@ -48,7 +48,7 @@ Icon::map($this);
                 'template' => '{atestado}',
                 'buttons' => [
                     'atestado' => function ($url, $model) {
-                        return Html::a(Icon::show('file'), ['atestado', 'id' => $model->id, 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')], ['title' => 'Gerar atestado'], ['target' => '@blank']);
+                        return Html::a(Icon::show('file'), ['atestado', 'id' => $model->id, 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')], ['title' => 'Gerar atestado'], ['target' => '@blank']);
                     }
                 ]
             ],
@@ -61,10 +61,10 @@ Icon::map($this);
                 'template' => '{update} {delete}',
                 'buttons' => [
                     'update' => function ($url, $model) {
-                        return Html::a(Icon::show('edit'), ['update', 'id' => $model->id, 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')], ['title' => 'Editar']);
+                        return Html::a(Icon::show('edit'), ['update', 'id' => $model->id, 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')], ['title' => 'Editar']);
                     },
                     'delete' => function ($url, $model) {
-                        return Html::a(Icon::show('trash'), ['delete', 'id' => $model->id, 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')]);
+                        return Html::a(Icon::show('trash'), ['delete', 'id' => $model->id, 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')]);
                     }
                 ]
             ],

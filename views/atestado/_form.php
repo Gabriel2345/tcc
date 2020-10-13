@@ -24,7 +24,7 @@ Icon::map($this);
 
     <div class="form-group">
         <?php echo Html::submitButton(Icon::show('check') . ' Salvar', ['class' => 'btn btn-success']) ?>        
-        <?php echo Html::a(Icon::show('times') . ' Cancelar', ['index', 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente')], ['class'=> 'btn btn-danger']) ?>
+        <?php echo Html::a(Icon::show('times') . ' Cancelar', ['index', 'id_consulta' => $model->id_consulta, 'id_paciente' => Yii::$app->request->get('id_paciente'), 'id_fila' => Yii::$app->request->get('id_fila')], ['class'=> 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

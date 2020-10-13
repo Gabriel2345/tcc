@@ -63,6 +63,7 @@ class ConsultaController extends Controller
         $request = Yii::$app->request;
         $model = new Consulta();
         $model->id_paciente = $id_paciente;
+        $model->hora = date('H:i:s');
         $fila = Yii::$app->request->get('id_fila');
         
 
